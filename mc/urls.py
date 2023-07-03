@@ -21,5 +21,7 @@ from mc.settings import STATIC_URL
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('main.urls')),
+    path('main/', include('main.urls')),
     path('compras/', include('compras.urls')),
 ]

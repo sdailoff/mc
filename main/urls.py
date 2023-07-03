@@ -5,5 +5,5 @@ from . import views
 from mc.settings import STATIC_URL
 
 urlpatterns = [
-    path('', views.home, name = 'compras'),
+    path('', views.homeMain, name = 'main'),
 ]
