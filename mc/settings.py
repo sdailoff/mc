@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'mc',
         'USER': 'sdailoff',
         'PASSWORD': '1234',
-        'HOST': 'sdailoff.mysql.pythonanywhere-services.com',
+        'HOST': 'www.sdailoff.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
