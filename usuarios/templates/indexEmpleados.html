@@ -1,0 +1,21 @@
+{% extends 'header.html' %}
+{% block content %}
+
+    <p>probando empleadoooo</p>
+    <table>       
+      {% if empleados %}
+        {% for emp in empleados %}
+          <tr>
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.nombre|upper }}</td>
+            <td><a class="cta">Ver detalle</a></td>
+          </tr>
+        {% endfor %}      
+      
+    </table>
+    {% else %}
+    <p>No hay empleados con los criterios seleccionados.</p>
+    {% endif %}
+
+{% endblock %}
+{% include 'footer.html' %}
