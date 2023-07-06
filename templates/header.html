@@ -208,28 +208,39 @@
     </button>
     <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
       <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+        <button type="button" class="dropdown-item d-flex align-items-center" onclick="nuevaCompra()" data-bs-theme-value="light" aria-pressed="false">
           <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#table"></use></svg>
           Compra
-          <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
         </button>
       </li>
       <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+        <button type="button" class="dropdown-item d-flex align-items-center" onclick="nuevaTarea()" data-bs-theme-value="dark" aria-pressed="false">
           <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#grid"></use></svg>
           Tarea
-          <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
         </button>
       </li>
       <li>
-        <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+        <button type="button" class="dropdown-item d-flex align-items-center active" onclick="nuevoEmpleado()" data-bs-theme-value="auto" aria-pressed="true">
           <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#people-circle"></use></svg>
           Empleado
-          <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
         </button>
       </li>
     </ul>
   </div>
+
+  <script>
+    function nuevoEmpleado() {
+      window.location.href = "{% url 'nuevoEmpleado' %}";
+    }
+
+    function nuevaTarea() {
+      window.location.href = "{% url 'nuevoEmpleado' %}";
+    }
+
+    function nuevaCompra() {
+      window.location.href = "{% url 'nuevoEmpleado' %}";
+    }
+  </script>
 {% block content %}
 {% endblock %}
 

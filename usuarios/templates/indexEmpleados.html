@@ -1,18 +1,22 @@
 {% extends 'header.html' %}
 {% block content %}
 
-    <p>probando empleadoooo</p>
-    <table>       
+    
+    <div class="col-lg-10 offset-lg-1">
+      <h3>Listado empleados</h3>
+    <table class="table table-hover">   
       {% if empleados %}
         {% for emp in empleados %}
           <tr>
             <td>{{ emp.id }}</td>
             <td>{{ emp.nombre|upper }}</td>
-            <td><a class="cta">Ver detalle</a></td>
+            <td>{{ emp.usuario|upper }}</td>
+            <td>{{ emp.contraseña|upper }}</td>
+            <td><a class="btn btn-warning">Ver detalle</a></td>
           </tr>
         {% endfor %}      
       
-    </table>
+    </table></div>
     {% else %}
     <p>No hay empleados con los criterios seleccionados.</p>
     {% endif %}
