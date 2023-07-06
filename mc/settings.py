@@ -81,9 +81,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mc',
-        'USER': 'root',
+        'USER': 'sdailoff',
         'PASSWORD': '1234',
-        'HOST': 'localhost',
+        'HOST': 'sdailoff.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
