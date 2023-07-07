@@ -80,10 +80,12 @@ WSGI_APPLICATION = 'mc.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sdailoff$mc',
+        'NAME': 'mc',
+        #'NAME': 'sdailoff$mc',
         'USER': 'sdailoff',
         'PASSWORD': 'sofi2023',
-        'HOST': 'sdailoff.mysql.pythonanywhere-services.com',
+        'HOST': '127.0.0.1',
+        #'HOST': 'sdailoff.mysql.pythonanywhere-services.com',
         'PORT': '3306'
     }
 }
