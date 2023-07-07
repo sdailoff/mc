@@ -11,4 +11,4 @@ def listCompras(request):
 def nuevaCompra(request):
     # Lógica de la vista
     
-    return render(request, 'indexCompras.html')
+    return render(request, 'nuevaCompra.html')

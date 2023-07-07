@@ -5,5 +5,7 @@ from . import views
 from mc.settings import STATIC_URL
 
 urlpatterns = [
-    path('', views.homeTasks, name = 'tasks'),
+    path('', views.listTasks, name = 'listTasks'),
+    path('new', views.nuevaTask, name = 'nuevaTask'),
 ]
+

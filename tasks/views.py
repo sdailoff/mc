@@ -1,7 +1,14 @@
 from django.shortcuts import render
 
 # Create your views here.
-def homeTasks(request):
+def listTasks(request):
     # Lógica de la vista
     
-    return render(request, 'indexTasks.html')
+    return render(request, 'listTasks.html')
+
+
+# Create your views here.
+def nuevaTask(request):
+    # Lógica de la vista
+    
+    return render(request, 'nuevaTask.html')

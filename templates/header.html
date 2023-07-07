@@ -178,7 +178,7 @@
                 </a>
               </li>
               <li>
-                <a href="{% url 'tasks' %}" class="nav-link text-white">
+                <a href="{% url 'listTasks' %}" class="nav-link text-white">
                   <svg class="bi d-block mx-auto mb-1" width="20" height="20">
                     <use xlink:href="#grid" />
                   </svg>
@@ -198,8 +198,7 @@
               <button
                 type="button"
                 onclick="redirectToUsers()"
-                class="btn btn-light text-dark me-2"
-              >
+                class="btn btn-light text-dark me-2">
                 Iniciar sesión
               </button>
 
@@ -326,7 +325,7 @@
         }
 
         function nuevaTarea() {
-          window.location.href = "{% url 'nuevoEmpleado' %}";
+          window.location.href = "{% url 'nuevaTask' %}";
         }
 
         function nuevaCompra() {
