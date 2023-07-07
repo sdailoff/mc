@@ -3,17 +3,17 @@ from .forms import UsuarioForm
 from .models import Usuario
 
 # Create your views here.
-def indexUser(request):
+def login(request):
     # Lógica de la vista    
-    return render(request, 'indexUser.html')
+    return render(request, 'login.html')
 
 
-def indexEmpleados(request):
+def listEmpleados(request):
     # Lógica de la vista    
     listado = Usuario.objects.all()
-    return render(request, 'indexEmpleados.html',  {'empleados': listado})
+    return render(request, 'listEmpleados.html',  {'empleados': listado})
 
-def newEmpleado(request):
+def nuevoEmpleado(request):
     # Lógica de la vista   
     
 
@@ -29,5 +29,5 @@ def newEmpleado(request):
     else:
         form =  UsuarioForm()
 
-    return render(request, 'user.html', {'form': form})
+    return render(request, 'nuevoEmpleado.html', {'form': form})
 
