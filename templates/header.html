@@ -140,7 +140,7 @@
               </a>
             </li>
             <li>
-              <a href="{% url 'compras' %}" class="nav-link text-white">
+              <a href="{% url 'listCompras' %}" class="nav-link text-white">
                 <svg class="bi d-block mx-auto mb-1" width="20" height="20"><use xlink:href="#table"/></svg>
                 Compras
               </a>
@@ -238,7 +238,7 @@
     }
 
     function nuevaCompra() {
-      window.location.href = "{% url 'nuevoEmpleado' %}";
+      window.location.href = "{% url 'nuevaCompra' %}";
     }
   </script>
 {% block content %}
