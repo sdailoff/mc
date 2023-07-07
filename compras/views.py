@@ -4,4 +4,4 @@ from django.shortcuts import render
 def home(request):
     # Lógica de la vista
     
-    return render(request, 'index.html')
+    return render(request, 'indexCompras.html')
