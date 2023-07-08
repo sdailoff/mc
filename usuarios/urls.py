@@ -7,5 +7,6 @@ from mc.settings import STATIC_URL
 urlpatterns = [
     path('', views.listEmpleados, name = 'listEmpleados'),
     path('new', views.nuevoEmpleado, name = 'nuevoEmpleado'),
+    path('editar/<int:id>/', views.editarEmpleado, name = 'editarEmpleado'),
     path('login', views.login, name = 'login'),
 ]

@@ -1,31 +1,23 @@
 {% extends 'header.html' %}
 {% block content %}
-<body>
-    <p>probando users</p>
-    <div class="alert alert-primary" role="alert">
-        A simple primary alert—check it out!
-      </div>
-      <div class="alert alert-secondary" role="alert">
-        A simple secondary alert—check it out!
-      </div>
-      <div class="alert alert-success" role="alert">
-        A simple success alert—check it out!
-      </div>
-      <div class="alert alert-danger" role="alert">
-        A simple danger alert—check it out!
-      </div>
-      <div class="alert alert-warning" role="alert">
-        A simple warning alert—check it out!
-      </div>
-      <div class="alert alert-info" role="alert">
-        A simple info alert—check it out!
-      </div>
-      <div class="alert alert-light" role="alert">
-        A simple light alert—check it out!
-      </div>
-      <div class="alert alert-dark" role="alert">
-        A simple dark alert—check it out!
-      </div>
-</body>
+
+<div class="d-flex row col-lg-4 offset-lg-4 col-md-10 offset-md-1 col-sm-10 offset-sm-1 align-items-center p-3 my-3 rounded shadow-sm">
+  
+  <p class="h2 bg-light rounded shadow-sm mb-3 p-2 text-center">Iniciar sesión</p>
+
+  <form>
+
+    <div class="form-floating mt-2">
+      <input type="text" class="form-control" id="floatingInput" placeholder="Nombre de usuario">
+      <label for="floatingInput">Usuario</label>
+    </div>
+    <div class="form-floating mt-2">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+ 
+    <button class="btn btn-primary w-100 py-2 mt-4" type="submit">Iniciar sesión</button> 
+  </form>
+</div>
 {% endblock %}
 {% include 'footer.html' %}
