@@ -2,11 +2,42 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UsuarioForm
 from .models import Usuario
 
-# Create your views here.
-def login(request):
-    # Lógica de la vista    
-    return render(request, 'login.html')
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User 
 
+# Create your views here.
+def loginSession(request):
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            
+            usu = form.cleaned_data['usuario'] 
+            passw  = form.cleaned_data['contraseña'] 
+            user = authenticate(request, username=usu, password=passw)
+            if user is not None:
+
+                user = User.objects.get(username=usu)
+
+                # Iniciar sesión del usuario
+                login(request, user)
+                
+                listado = Usuario.objects.all()
+                return render(request, 'listEmpleados.html',  {'empleados': listado})
+                # Redirigir a una página después de iniciar sesión correctamente
+                #return render(request, 'login/login.html', {'mensaje': 'Inicio de sesión correccctooooo'})
+            else:
+                return render(request, 'login.html', {'mensaje': 'Inicio de sesión erroneo'})
+            # Realizar lógica de autenticación
+            # ...    
+        else:
+            
+            return render(request, 'login.html', {'mensaje': form.errors})
+
+    else:
+        return render(request, 'login.html')# Lógica de la vista    
+    #return render(request, 'login.html')
+    return render(request, 'login.html')
 
 def listEmpleados(request):
     # Lógica de la vista    
@@ -53,4 +84,12 @@ def editarEmpleado(request, id):
             return render(request, 'nuevoEmpleado.html', {'form': form, 'usu': usu})
     
     
-   
+
+    
+    
+    
+
+
+def logoutSession(request):
+    logout(request)
+    return render(request, 'login.html')

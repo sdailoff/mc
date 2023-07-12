@@ -5,14 +5,24 @@
   
   <p class="h2 bg-light rounded shadow-sm mb-3 p-2 text-center">Iniciar sesión</p>
 
-  <form>
+  <form method="POST" >
+    {% csrf_token %}
 
+    {% if mensaje %}
+    <p>{{form.errors}}</p>
+    
+                    <p>{{ mensaje }}</p>
+    {% endif %}
     <div class="form-floating mt-2">
-      <input type="text" class="form-control" id="floatingInput" placeholder="Nombre de usuario">
+      <input type="text" class="form-control" id="floatingInput" style="display: none;" name="nombre" value="Nombre de usuario">
+      
+    </div>
+    <div class="form-floating mt-2">
+      <input type="text" class="form-control" id="floatingInput" name="usuario" placeholder="Nombre de usuario">
       <label for="floatingInput">Usuario</label>
     </div>
     <div class="form-floating mt-2">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
+      <input type="password" class="form-control" id="floatingPassword" name="contraseña" placeholder="Contraseña">
       <label for="floatingPassword">Contraseña</label>
     </div>
  
