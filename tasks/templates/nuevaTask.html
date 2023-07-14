@@ -1,33 +1,54 @@
-{% extends 'header.html' %} {% block content %}
+{% extends 'header.html' %}
+{% block content %}
 
-<div
-  class="d-flex row col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 align-items-center p-3 my-3 rounded shadow-sm">
+<div class="d-flex row col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 align-items-center p-3 my-3 rounded shadow-sm">
   
-  <p class="h2 bg-light rounded shadow-sm mb-3 p-2 text-center">nueva tarea</p>
+    {% if ta %}
+    <p class="h2 bg-light rounded shadow-sm mb-3 p-2 text-center">Editar tarea</p>
+    {% else %}
+    <p class="h2 bg-light rounded shadow-sm mb-3 p-2 text-center">Nueva tarea</p>
+    {% endif %}
 
-  <div class="alert alert-primary" role="alert">
-    A simple primary alert—check it out!
-  </div>
-  <div class="alert alert-secondary" role="alert">
-    A simple secondary alert—check it out!
-  </div>
-  <div class="alert alert-success" role="alert">
-    A simple success alert—check it out!
-  </div>
-  <div class="alert alert-danger" role="alert">
-    A simple danger alert—check it out!
-  </div>
-  <div class="alert alert-warning" role="alert">
-    A simple warning alert—check it out!
-  </div>
-  <div class="alert alert-info" role="alert">
-    A simple info alert—check it out!
-  </div>
-  <div class="alert alert-light" role="alert">
-    A simple light alert—check it out!
-  </div>
-  <div class="alert alert-dark" role="alert">
-    A simple dark alert—check it out!
-  </div>
+    <div class="col-md-6 offset-lg-3 text-center form-floating mt-2 ">
+             
+    <form method="POST" enctype="multipart/form-data">    
+        {% csrf_token %}
+        
+        
+        <div class="form-floating mt-2">
+          <input type="text" class="form-control" id="floatingInput" name="nombre" placeholder="Nombre de la tarea">
+          <label for="floatingInput">Nombre</label>
+        </div>
+        <div class="form-floating mt-2">
+          <input type="text" class="form-control" id="floatingObs" name="observacion" placeholder="Observacion">
+          <label for="floatingObs">Observacion</label>
+        </div>
+        <div class="form-floating mt-2">
+          <select type="text" class="form-select" id="floatingUsu" name="usuario" placeholder="Seleccionar usuario">
+            <option>Seleccionar empleado</option>
+            {% if empleados %}
+              {% for emp in empleados %}
+                <option value="{{ emp.id }}">{{ emp.nombre|upper }}</option>             
+              {% endfor %} 
+            {% else %}
+            <option>No hay empleados con los criterios seleccionados.</option>
+            {% endif %}
+          </select>
+          <label for="floatingUsu">Usuario</label>
+        </div>
+        
+ 
+        <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+        <button type="reset" class="btn btn-success mt-2">Reiniciar</button>
+        <button type="reset" class="btn btn-warning mt-2" onclick="redirectToTasks()">Volver</button>
+      
+    </form>
+    <script>
+        function redirectToTasks() {
+            window.location.href = "{% url 'listTasks' %}";
+        }
+    </script>
+    </div>
 </div>
-{% endblock %} {% include 'footer.html' %}
+{% endblock %}
+{% include 'footer.html' %}

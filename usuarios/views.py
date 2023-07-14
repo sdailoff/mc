@@ -74,7 +74,7 @@ def nuevoEmpleado(request):
 
     return render(request, 'nuevoEmpleado.html', {'form': form})
 
-
+@login_required
 def editarEmpleado(request, id):
     usu = get_object_or_404(Usuario, id=id)
 
@@ -89,7 +89,7 @@ def editarEmpleado(request, id):
         else:
             return render(request, 'nuevoEmpleado.html', {'form': form, 'usu': usu})
     
-
+@login_required
 def eliminarEmpleado(request, id):
     
     usu = get_object_or_404(Usuario, id=id)
