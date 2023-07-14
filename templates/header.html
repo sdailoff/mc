@@ -195,18 +195,28 @@
               </li>
             </ul>
             <div class="col-lg-2 col-md-12 text-end">
-              <button
-                type="button"
-                onclick="redirectToUsers()"
-                class="btn btn-light text-dark me-2">
-                Iniciar sesión
-              </button>
-              <button
-              type="button"
-              onclick="redirectToLogout()"
-              class="btn btn-light text-dark me-2">
-              Cerrar sesión
-            </button>
+              {% if user.is_authenticated %}
+                  <!-- Usuario autenticado -->
+                  <button
+                    type="button"
+                    onclick="redirectToLogout()"
+                    class="btn btn-light text-dark me-2">
+                    Salir ({{ user.username }})
+                  </button>
+                  
+                  <!-- Otro contenido para usuarios autenticados -->
+                {% else %}
+                    <!-- Usuario no autenticado -->
+                    <button
+                      type="button"
+                      onclick="redirectToUsers()"
+                      class="btn btn-light text-dark me-2">
+                      Iniciar sesión
+                    </button>
+                    <!-- Otro contenido para usuarios no autenticados -->
+                {% endif %}
+              
+              
               <script>
                 function redirectToUsers() {
                   window.location.href = "{% url 'login' %}";
