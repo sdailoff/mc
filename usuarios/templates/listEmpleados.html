@@ -11,7 +11,7 @@
         <th>Nombre</th>
         <th>Usuario</th>
         <th>Contraseña</th>
-        <th>Editar</th>
+        <th colspan="2">Acciones</th>
       </tr>
         {% for emp in empleados %}
           <tr>
@@ -19,8 +19,21 @@
             <td>{{ emp.nombre|upper }}</td>
             <td>{{ emp.usuario|upper }}</td>
             <td>{{ emp.contraseña|upper }}</td>
-            <td><a class="btn btn-warning" href="{% url 'editarEmpleado' emp.id %}">Editar</a></td>
+            <td>
+              <a class="btn btn-warning" href="{% url 'editarEmpleado' emp.id %}">Editar</a>
+              {% url 'eliminarEmpleado' emp.id as eliminar_url %}
+
+              <a class="btn btn-danger" onclick="confirmarEliminacion('{{ eliminar_url }}')">Eliminar</a>
+            </td>
           </tr>
+          <script>
+            function confirmarEliminacion(url) {
+              if (confirm("¿Estás seguro de que deseas eliminar a este empleado?")) {
+                  // Si el usuario confirma, redirigir a la URL de eliminación
+                  window.location.href = url;
+              }
+          }
+          </script>
         {% endfor %}      
       
     </table>
@@ -28,5 +41,6 @@
     <p>No hay empleados con los criterios seleccionados.</p>
     {% endif %}
 </div>
+
 {% endblock %}
 {% include 'footer.html' %}

@@ -89,11 +89,13 @@ def editarEmpleado(request, id):
         else:
             return render(request, 'nuevoEmpleado.html', {'form': form, 'usu': usu})
     
-    
 
+def eliminarEmpleado(request, id):
     
-    
-    
+    usu = get_object_or_404(Usuario, id=id)
+    usu.delete()
+    return redirect('listEmpleados')
+         
 
 
 def logoutSession(request):
