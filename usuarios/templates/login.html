@@ -9,9 +9,7 @@
     {% csrf_token %}
 
     {% if mensaje %}
-    <p>{{form.errors}}</p>
-    
-                    <p>{{ mensaje }}</p>
+      <p class="bg-danger text-light p-2 rounded-3 text-center">{{ mensaje }}</p>
     {% endif %}
     <div class="form-floating mt-2">
       <input type="text" class="form-control" id="floatingInput" style="display: none;" name="nombre" value="Nombre de usuario">

@@ -39,11 +39,17 @@ def loginSession(request):
     #return render(request, 'login.html')
     return render(request, 'login.html')
 
+
+def logoutSession(request):
+    logout(request)
+    return render(request, 'login.html')# Lógica de la vista    
+
 def listEmpleados(request):
     # Lógica de la vista    
     listado = Usuario.objects.all()
     return render(request, 'listEmpleados.html',  {'empleados': listado})
 
+@login_required
 def nuevoEmpleado(request):
     # Lógica de la vista   
     if request.method == 'POST':

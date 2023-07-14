@@ -201,10 +201,18 @@
                 class="btn btn-light text-dark me-2">
                 Iniciar sesión
               </button>
-
+              <button
+              type="button"
+              onclick="redirectToLogout()"
+              class="btn btn-light text-dark me-2">
+              Cerrar sesión
+            </button>
               <script>
                 function redirectToUsers() {
                   window.location.href = "{% url 'login' %}";
+                }
+                function redirectToLogout() {
+                  window.location.href = "{% url 'logout' %}";
                 }
               </script>
             </div>

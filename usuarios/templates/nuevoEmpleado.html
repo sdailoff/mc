@@ -1,13 +1,16 @@
 {% extends 'header.html' %}
 {% block content %}
 
+<div class="d-flex row col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 align-items-center p-3 my-3 rounded shadow-sm">
+  
     {% if usu %}
-    <p>Editando empleado</p>
+    <p class="h2 bg-light rounded shadow-sm mb-3 p-2 text-center">Editar empleado</p>
     {% else %}
-    <p>Agregando empleado</p>
+    <p class="h2 bg-light rounded shadow-sm mb-3 p-2 text-center">Nuevo empleado</p>
     {% endif %}
 
-
+    <div class="col-md-6 offset-lg-3 text-center form-floating mt-2 ">
+             
     <form method="POST" enctype="multipart/form-data">    
         {% csrf_token %}
         {{ form.as_p }}
@@ -22,5 +25,7 @@
             window.location.href = "{% url 'listEmpleados' %}";
         }
     </script>
+    </div>
+</div>
 {% endblock %}
 {% include 'footer.html' %}

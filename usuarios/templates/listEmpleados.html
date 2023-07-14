@@ -6,13 +6,20 @@
 
     <table class="table table-hover text-center">   
       {% if empleados %}
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Usuario</th>
+        <th>Contraseña</th>
+        <th>Editar</th>
+      </tr>
         {% for emp in empleados %}
           <tr>
             <td>{{ emp.id }}</td>
             <td>{{ emp.nombre|upper }}</td>
             <td>{{ emp.usuario|upper }}</td>
             <td>{{ emp.contraseña|upper }}</td>
-            <td><a class="btn btn-warning" href="{% url 'editarEmpleado' emp.id %}">Ver detalle</a></td>
+            <td><a class="btn btn-warning" href="{% url 'editarEmpleado' emp.id %}">Editar</a></td>
           </tr>
         {% endfor %}      
       
