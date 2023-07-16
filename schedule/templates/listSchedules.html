@@ -1,0 +1,51 @@
+{% extends 'header.html' %} {% block content %}
+
+<div class="d-flex row col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 align-items-center p-3 my-3 rounded shadow-sm">
+  
+  <p class="h2 bg-light rounded shadow-sm mb-3 p-2 text-center">Listado de Horarios</p>
+
+    <table class="table table-hover text-center">   
+      {% if schedules %}
+      <tr>
+        <th>ID</th>
+        <th>Día</th>
+        <th>Horario</th>
+        <th>Empleados</th>
+        <th colspan="2">Acciones</th>
+      </tr>
+        {% for sche in schedules %}
+          <tr>
+            <td>{{ sche.id }}</td>
+            <td>{{ sche.dia }}</td>
+            <td>{{ sche.hora }}</td>
+
+            {% if sche.usuario.exists %}
+            <td>{{ sche.usuario }}</td>
+            {% else %}            
+            <td>Sin asignar</td>
+            {% endif %}
+            <td>
+              <a class="btn btn-warning" href="{% url 'editarSchedule' sche.id %}">Editar</a>
+              {% url 'eliminarSchedule' sche.id as eliminar_url %}
+
+              <a class="btn btn-danger" onclick="confirmarEliminacion('{{ eliminar_url }}')">Eliminar</a>
+            </td>
+          </tr>
+          <script>
+            function confirmarEliminacion(url) {
+              if (confirm("¿Estás seguro de que deseas eliminar este horario?")) {
+                  // Si el usuario confirma, redirigir a la URL de eliminación
+                  window.location.href = url;
+              }
+          }
+          </script>
+        {% endfor %}      
+      
+    </table>
+    {% else %}
+    <p>No hay calendarios con los criterios seleccionados.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
+{% include 'footer.html' %}

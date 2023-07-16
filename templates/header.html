@@ -162,11 +162,11 @@
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link text-white">
+                <a href="{% url 'listSchedules' %}" class="nav-link text-white">
                   <svg class="bi d-block mx-auto mb-1" width="20" height="20">
                     <use xlink:href="#speedometer2" />
                   </svg>
-                  Dashboard
+                  Calendario
                 </a>
               </li>
               <li>
@@ -280,6 +280,24 @@
           class="dropdown-menu dropdown-menu-end shadow"
           aria-labelledby="bd-theme-text"
         >
+        <li>
+          <button
+            type="button"
+            class="dropdown-item d-flex align-items-center"
+            onclick="nuevoSchedule()"
+            data-bs-theme-value="light"
+            aria-pressed="false"
+          >
+            <svg
+              class="bi me-2 opacity-50 theme-icon"
+              width="1em"
+              height="1em"
+            >
+              <use href="#speedometer2"></use>
+            </svg>
+            Calendario
+          </button>
+        </li>
           <li>
             <button
               type="button"
@@ -348,6 +366,10 @@
 
         function nuevaCompra() {
           window.location.href = "{% url 'nuevaCompra' %}";
+        }
+
+        function nuevoSchedule() {
+          window.location.href = "{% url 'nuevoSchedule' %}";
         }
       </script>
       {% block content %} {% endblock %}

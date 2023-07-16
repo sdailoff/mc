@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'compras',
     'main',
     'usuarios',
-    'tasks'
+    'tasks',
+    'schedule'
 ]
 
 MIDDLEWARE = [

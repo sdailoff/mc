@@ -1,0 +1,62 @@
+{% extends 'header.html' %}
+{% block content %}
+
+<div class="d-flex row col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 align-items-center p-3 my-3 rounded shadow-sm">
+  
+    {% if sche %}
+    <p class="h2 bg-light rounded shadow-sm mb-3 p-2 text-center">Editar calendario</p>
+    {% else %}
+    <p class="h2 bg-light rounded shadow-sm mb-3 p-2 text-center">Nuevo calendario</p>
+    {% endif %}
+
+    <div class="col-md-6 offset-lg-3 text-center form-floating mt-2 ">
+             
+        <form method="POST" enctype="multipart/form-data">    
+            {% csrf_token %}
+            
+            
+            <div class="form-floating mt-2">
+              <input type="date" class="form-control" id="floatingInput" name="date" placeholder="Fecha" value="{%if sche %} {{sche.dia}} {%endif%}">
+              <label for="floatingInput">Fecha</label>
+            </div>
+            <div class="form-floating mt-2">
+              <input type="time" class="form-control" id="floatingObs" name="hourIni" placeholder="Hora" value="{%if sche %} {{sche.hour}} {%endif%}">
+              <label for="floatingObs">Inicio</label>
+            </div>
+            
+            <div class="form-floating mt-2">
+                <input type="time" class="form-control" id="floatingObs" name="hourFin" placeholder="Hora" value="{%if sche %} {{sche.hour}} {%endif%}">
+                <label for="floatingObs">Hasta</label>
+              </div>
+            <div class="form-floating mt-2">
+              <select type="text" class="form-select" id="floatingUsu" name="usuario" placeholder="Seleccionar usuario">
+                <option>Seleccionar empleado</option>
+                {% if empleados %}
+                  {% for emp in empleados %}                
+                  <option value="{{ emp.id }}" {% if tarea and tarea.usuario_id == emp.id %} selected {% endif %}>
+                    {{emp.nombre|upper}} {{ emp.apellido|upper }}
+                  </option>
+                                 
+                  {% endfor %} 
+                {% else %}
+                <option>No hay empleados con los criterios seleccionados.</option>
+                {% endif %}
+              </select>
+              <label for="floatingUsu">Usuario</label>
+            </div>
+            
+     
+            <button type="submit" class="btn btn-primary mt-2">{% if tarea %}Actualizar{% else %}Guardar{% endif %}</button>
+            <button type="reset" class="btn btn-success mt-2">Reiniciar</button>
+            <button type="button" class="btn btn-warning mt-2" onclick="redirectToTasks()">Volver</button>
+          
+        </form>
+    <script>
+        function redirectToSchedules() {
+            window.location.href = "{% url 'listSchedules' %}";
+        }
+    </script>
+    </div>
+</div>
+{% endblock %}
+{% include 'footer.html' %}

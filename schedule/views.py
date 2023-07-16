@@ -1,0 +1,66 @@
+from django.shortcuts import render, redirect, get_object_or_404
+
+from .models import Usuario, Schedule
+from .forms import ScheduleForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+
+
+from usuarios.models import Usuario
+# Create your views here.
+def listSchedules(request):
+    # Lógica de la vista
+    listado = Schedule.objects.all()
+    return render(request, 'listSchedules.html',  {'schedules': listado})
+
+
+# Create your views here.
+def nuevoSchedule(request):
+    # Lógica de la vista
+    if request.method == 'POST':
+        form = ScheduleForm(request.POST)
+        
+        if form.is_valid():
+            pk = request.POST.get('id')
+
+            if pk:  # Si se proporciona una clave primaria, es una actualización
+                objeto = get_object_or_404(Schedule, id=pk)
+                objeto.contraseña = form.data.contraseña
+                objeto.save()
+                  # Actualiza los datos en la base de datos
+            else:
+                form.save() # Guarda los datos en la base de datos
+            return redirect('listSchedules')  # Redirecciona a una página de éxito o a donde desees
+        else:
+            form.nombre.errors='No pudo guardar'
+
+    else:
+        listado = Schedule.objects.all()
+        print(listado)
+        return render(request, 'nuevoSchedule.html', {'schedules': listado})
+    
+    listado = Schedule.objects.all()
+    print(listado)
+    return render(request, 'nuevoSchedule.html', {'schedules': listado})
+
+def editarSchedule(request, id):
+    sche = get_object_or_404(Schedule, id=id)
+    listado = Schedule.objects.all()
+
+    if request.method == 'POST':
+        form = ScheduleForm(request.POST, instance=sche)
+        if form.is_valid():
+            form.save()
+            return redirect('listSchedules')
+    else:
+        form = ScheduleForm(instance=sche)
+    
+    return render(request, 'nuevoSchedule.html', {'form': form, 'Schedule': sche, 'empleados': listado})
+
+    
+@login_required
+def eliminarSchedule(request, id):
+    
+    sche = get_object_or_404(Schedule, id=id)
+    sche.delete()
+    return redirect('listSchedules')

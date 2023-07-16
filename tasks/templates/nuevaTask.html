@@ -31,8 +31,7 @@
               <option value="{{ emp.id }}" {% if tarea and tarea.usuario_id == emp.id %} selected {% endif %}>
                 {{emp.nombre|upper}} {{ emp.apellido|upper }}
               </option>
-              
-               
+                             
               {% endfor %} 
             {% else %}
             <option>No hay empleados con los criterios seleccionados.</option>
