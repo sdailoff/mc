@@ -21,7 +21,7 @@
             <td>{{ tarea.usuario|upper }}</td>
             <td>
               <a class="btn btn-warning" href="{% url 'editarTask' tarea.id %}">Editar</a>
-              {% url 'eliminarTask' emp.id as eliminar_url %}
+              {% url 'eliminarTask' tarea.id as eliminar_url %}
 
               <a class="btn btn-danger" onclick="confirmarEliminacion('{{ eliminar_url }}')">Eliminar</a>
             </td>
