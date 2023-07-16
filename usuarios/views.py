@@ -60,7 +60,9 @@ def nuevoEmpleado(request):
 
             if pk:  # Si se proporciona una clave primaria, es una actualización
                 objeto = get_object_or_404(Usuario, id=pk)
-                objeto.contraseña = form.data.contraseña
+                objeto.nombre = form.data.nombre
+                objeto.apellido = form.data.apellido
+                objeto.observacion = form.data.observacion
                 objeto.save()
                   # Actualiza los datos en la base de datos
             else:

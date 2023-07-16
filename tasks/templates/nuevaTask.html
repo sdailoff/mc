@@ -28,13 +28,10 @@
             <option>Seleccionar empleado</option>
             {% if empleados %}
               {% for emp in empleados %}                
-                  <option value="{{ emp.id }}" 
-                    {% if tarea and tarea.usuario|upper == emp.nombre|upper %} 
-                      selected 
-                      {% endif %}
-                      >
-                      {{ emp.nombre|upper }}
-                    </option>
+              <option value="{{ emp.id }}" {% if tarea and tarea.usuario_id == emp.id %} selected {% endif %}>
+                {{emp.nombre|upper}} {{ emp.apellido|upper }}
+              </option>
+              
                
               {% endfor %} 
             {% else %}

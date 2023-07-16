@@ -9,16 +9,16 @@
       <tr>
         <th>ID</th>
         <th>Nombre</th>
-        <th>Usuario</th>
-        <th>Contraseña</th>
+        <th>Apellido</th>
+        <th>Observacion</th>
         <th colspan="2">Acciones</th>
       </tr>
         {% for emp in empleados %}
           <tr>
             <td>{{ emp.id }}</td>
             <td>{{ emp.nombre|upper }}</td>
-            <td>{{ emp.usuario|upper }}</td>
-            <td>{{ emp.contraseña|upper }}</td>
+            <td>{{ emp.apellido|upper }}</td>
+            <td>{{ emp.observacion|upper }}</td>
             <td>
               <a class="btn btn-warning" href="{% url 'editarEmpleado' emp.id %}">Editar</a>
               {% url 'eliminarEmpleado' emp.id as eliminar_url %}
