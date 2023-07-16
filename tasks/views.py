@@ -43,20 +43,20 @@ def nuevaTask(request):
     print(listado)
     return render(request, 'nuevaTask.html', {'empleados': listado})
 
-    
 def editarTask(request, id):
-    ta = get_object_or_404(Task, id=id)
+    tarea = get_object_or_404(Task, id=id)
+    listado = Usuario.objects.all()
 
-    if request.method == 'GET':                 
-        form = TaskForm(instance=ta)
-        return render(request, 'nuevaTask.html', {'form': form, 'tarea': ta})
-    else:
-        form = TaskForm(request.POST, instance=ta)
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=tarea)
         if form.is_valid():
-            form.save()  # Guarda los datos actualizados en el objeto 'usu'
+            form.save()
             return redirect('listTasks')
-        else:
-            return render(request, 'nuevaTask.html', {'form': form, 'tarea': ta})
+    else:
+        form = TaskForm(instance=tarea)
+    
+    return render(request, 'nuevaTask.html', {'form': form, 'tarea': tarea, 'empleados': listado})
+
     
 @login_required
 def eliminarTask(request, id):

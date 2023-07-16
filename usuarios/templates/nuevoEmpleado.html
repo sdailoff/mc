@@ -15,7 +15,7 @@
         {% csrf_token %}
         {{ form.as_p }}
 
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary">{% if usu %}Actualizar{% else %}Guardar{% endif %}</button>
         <button type="reset" class="btn btn-success">Reiniciar</button>
         <button type="reset" class="btn btn-warning" onclick="redirectToUsers()">Volver</button>
       

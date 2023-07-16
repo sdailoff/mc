@@ -3,7 +3,7 @@
 
 <div class="d-flex row col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 align-items-center p-3 my-3 rounded shadow-sm">
   
-    {% if ta %}
+    {% if tarea %}
     <p class="h2 bg-light rounded shadow-sm mb-3 p-2 text-center">Editar tarea</p>
     {% else %}
     <p class="h2 bg-light rounded shadow-sm mb-3 p-2 text-center">Nueva tarea</p>
@@ -16,19 +16,26 @@
         
         
         <div class="form-floating mt-2">
-          <input type="text" class="form-control" id="floatingInput" name="nombre" placeholder="Nombre de la tarea">
+          <input type="text" class="form-control" id="floatingInput" name="nombre" placeholder="Nombre de la tarea" value="{%if tarea %} {{tarea.nombre}} {%endif%}">
           <label for="floatingInput">Nombre</label>
         </div>
         <div class="form-floating mt-2">
-          <input type="text" class="form-control" id="floatingObs" name="observacion" placeholder="Observacion">
+          <input type="text" class="form-control" id="floatingObs" name="observacion" placeholder="Observacion" value="{%if tarea %} {{tarea.observacion}} {%endif%}">
           <label for="floatingObs">Observacion</label>
         </div>
         <div class="form-floating mt-2">
           <select type="text" class="form-select" id="floatingUsu" name="usuario" placeholder="Seleccionar usuario">
             <option>Seleccionar empleado</option>
             {% if empleados %}
-              {% for emp in empleados %}
-                <option value="{{ emp.id }}">{{ emp.nombre|upper }}</option>             
+              {% for emp in empleados %}                
+                  <option value="{{ emp.id }}" 
+                    {% if tarea and tarea.usuario|upper == emp.nombre|upper %} 
+                      selected 
+                      {% endif %}
+                      >
+                      {{ emp.nombre|upper }}
+                    </option>
+               
               {% endfor %} 
             {% else %}
             <option>No hay empleados con los criterios seleccionados.</option>
@@ -38,9 +45,9 @@
         </div>
         
  
-        <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+        <button type="submit" class="btn btn-primary mt-2">{% if tarea %}Actualizar{% else %}Guardar{% endif %}</button>
         <button type="reset" class="btn btn-success mt-2">Reiniciar</button>
-        <button type="reset" class="btn btn-warning mt-2" onclick="redirectToTasks()">Volver</button>
+        <button type="button" class="btn btn-warning mt-2" onclick="redirectToTasks()">Volver</button>
       
     </form>
     <script>
