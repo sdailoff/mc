@@ -25,11 +25,11 @@
             </div>
             
             <div class="form-floating mt-2">
-                <input type="time" class="form-control" id="floatingObs" name="hourFin" placeholder="Hora" value="{%if sche %} {{sche.hour}} {%endif%}">
+                <input type="time" class="form-control"  id="floatingObs" name="hourFin" placeholder="Hora" value="{%if sche %} {{sche.hour}} {%endif%}">
                 <label for="floatingObs">Hasta</label>
               </div>
             <div class="form-floating mt-2">
-              <select type="text" class="form-select" id="floatingUsu" name="usuario" placeholder="Seleccionar usuario">
+              <select type="text" class="form-select" id="floatingUsu" name="usuario1" placeholder="Seleccionar usuario">
                 <option>Seleccionar empleado</option>
                 {% if empleados %}
                   {% for emp in empleados %}                

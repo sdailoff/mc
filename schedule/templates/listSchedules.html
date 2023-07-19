@@ -9,37 +9,36 @@
       <tr>
         <th>ID</th>
         <th>Día</th>
-        <th>Horario</th>
+        <th>Horario I</th>
+        <th>Horario F</th>
         <th>Empleados</th>
         <th colspan="2">Acciones</th>
       </tr>
-        {% for sche in schedules %}
-          <tr>
-            <td>{{ sche.id }}</td>
-            <td>{{ sche.dia }}</td>
-            <td>{{ sche.hora }}</td>
+         
+            <tr>
+            <!--<td>{{ sche.id }}</td>-->
+            {% for sche in schedules %}
+              <td>{{ sche.date }}</td>
+            {% endfor %}
+            </tr>
+             
+            <tr>
+            {% for sche in schedules %}
+              <td>{{ sche.hourIni }}</td>
+            {% endfor %}
+          </tr>
+            <!--
+            <td>{{ sche.hourIni }}</td>
+            <td>{{ sche.hourFin }}</td>
 
             {% if sche.usuario.exists %}
-            <td>{{ sche.usuario }}</td>
+            <td>{{ sche.usuario.nombre }}</td>
             {% else %}            
             <td>Sin asignar</td>
             {% endif %}
-            <td>
-              <a class="btn btn-warning" href="{% url 'editarSchedule' sche.id %}">Editar</a>
-              {% url 'eliminarSchedule' sche.id as eliminar_url %}
-
-              <a class="btn btn-danger" onclick="confirmarEliminacion('{{ eliminar_url }}')">Eliminar</a>
-            </td>
-          </tr>
-          <script>
-            function confirmarEliminacion(url) {
-              if (confirm("¿Estás seguro de que deseas eliminar este horario?")) {
-                  // Si el usuario confirma, redirigir a la URL de eliminación
-                  window.location.href = url;
-              }
-          }
-          </script>
-        {% endfor %}      
+            -->
+          
+       
       
     </table>
     {% else %}

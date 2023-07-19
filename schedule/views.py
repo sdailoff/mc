@@ -25,27 +25,29 @@ def nuevoSchedule(request):
 
             if pk:  # Si se proporciona una clave primaria, es una actualización
                 objeto = get_object_or_404(Schedule, id=pk)
-                objeto.contraseña = form.data.contraseña
+                objeto.date = form.data.date
+                
                 objeto.save()
                   # Actualiza los datos en la base de datos
             else:
                 form.save() # Guarda los datos en la base de datos
             return redirect('listSchedules')  # Redirecciona a una página de éxito o a donde desees
         else:
-            form.nombre.errors='No pudo guardar'
+            print(form.errors)
+            form.errors='No pudo guardar'
 
     else:
-        listado = Schedule.objects.all()
-        print(listado)
-        return render(request, 'nuevoSchedule.html', {'schedules': listado})
+        listado = Usuario.objects.all()
+         
+        return render(request, 'nuevoSchedule.html', {'empleados': listado})
     
-    listado = Schedule.objects.all()
-    print(listado)
-    return render(request, 'nuevoSchedule.html', {'schedules': listado})
+    listado = Usuario.objects.all()
+     
+    return render(request, 'nuevoSchedule.html', {'empleados': listado})
 
 def editarSchedule(request, id):
     sche = get_object_or_404(Schedule, id=id)
-    listado = Schedule.objects.all()
+    listado = Usuario.objects.all()
 
     if request.method == 'POST':
         form = ScheduleForm(request.POST, instance=sche)
