@@ -19,15 +19,17 @@
               <input type="date" class="form-control" id="floatingInput" name="date" placeholder="Fecha" value="{%if sche %} {{sche.dia}} {%endif%}">
               <label for="floatingInput">Fecha</label>
             </div>
-            <div class="form-floating mt-2">
-              <input type="time" class="form-control" id="floatingObs" name="hourIni" placeholder="Hora" value="{%if sche %} {{sche.hour}} {%endif%}">
-              <label for="floatingObs">Inicio</label>
-            </div>
+            <div class="col-xs-12 col-md-3 input-group input-group-sm"> 
+            {% for h in listHoras %}   
             
-            <div class="form-floating mt-2">
-                <input type="time" class="form-control"  id="floatingObs" name="hourFin" placeholder="Hora" value="{%if sche %} {{sche.hour}} {%endif%}">
-                <label for="floatingObs">Hasta</label>
+              <div class="col-md-3">
+              <label for="{{h.hourIni}}">{{h.hourIni}} <input type="checkbox" class="checkbox" id="{{h.hourIni}}" name="{{h.hourIni}}" value="{{h.hourIni}}">
               </div>
+                
+              </label>   
+            {%endfor%}           
+          </div>
+           
             <div class="form-floating mt-2">
               <select type="text" class="form-select" id="floatingUsu" name="usuario1" placeholder="Seleccionar usuario">
                 <option>Seleccionar empleado</option>

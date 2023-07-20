@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import Usuario, Schedule
+from .models import Usuario, Schedule, HourIni
 from .forms import ScheduleForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -38,12 +38,13 @@ def nuevoSchedule(request):
 
     else:
         listado = Usuario.objects.all()
-         
-        return render(request, 'nuevoSchedule.html', {'empleados': listado})
+        listHoras = HourIni.objects.all()
+        return render(request, 'nuevoSchedule.html', {'empleados': listado, 'listHoras': listHoras})
     
+    listHoras = HourIni.objects.all().order_by('hourIni')
     listado = Usuario.objects.all()
      
-    return render(request, 'nuevoSchedule.html', {'empleados': listado})
+    return render(request, 'nuevoSchedule.html', {'empleados': listado, 'listHoras': listHoras})
 
 def editarSchedule(request, id):
     sche = get_object_or_404(Schedule, id=id)
