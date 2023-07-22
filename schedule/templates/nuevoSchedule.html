@@ -15,23 +15,36 @@
             {% csrf_token %}           
             
             <div class="form-floating mt-2">
-              <input type="date" class="form-control" id="floatingInput" name="date" placeholder="Fecha" value="{%if sche %} {{sche.dia}} {%endif%}">
-              <label for="floatingInput">Fecha</label>
+              <select type="text" class="form-select" id="floatingUsu" name="date" placeholder="Seleccionar día">
+                <option>Seleccionar día</option>
+                {% if listDate %}
+                  {% for ld in listDate %}                
+                  <option value="{{ ld.id }}" {% if sc and sc.date_id == ld.id %} selected {% endif %}>
+                    {{ld.date|upper}} 
+                  </option>
+                                 
+                  {% endfor %} 
+                {% else %}
+                <option>No hay días.</option>
+                {% endif %}
+              </select>
+              <label for="floatingUsu">Usuario</label>
             </div>
+
             <div class="col-xs-12 col-md-3 input-group input-group-sm"> 
             {% for h in listHoras %}   
             
               <div class="col-md-3">
               <label for="inicio">{{h.hourIni}} 
-                <input type="checkbox" class="checkbox" id="{{h.hourIni}}" name="inicio" value="{{h.id}}">
+                <input type="checkbox" class="checkbox" id="{{h.hourIni}}" name="hourIni" value="{{h.id}}">
               </div>
                 
               </label>   
             {%endfor%}           
-          </div>
+            </div>
            
             <div class="form-floating mt-2">
-              <select type="text" class="form-select" id="floatingUsu" name="usuario1" placeholder="Seleccionar usuario">
+              <select type="text" class="form-select" id="floatingUsu" name="usuario" placeholder="Seleccionar usuario">
                 <option>Seleccionar empleado</option>
                 {% if empleados %}
                   {% for emp in empleados %}                

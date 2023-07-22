@@ -1,7 +1,7 @@
 from django import forms
-from .models import Schedule
+from .models import ScheduleAG
 
-class ScheduleForm(forms.ModelForm):
+class ScheduleAGForm(forms.ModelForm):
     class Meta:
-        model = Schedule
-        fields = ['date', 'inicio', 'usuario1']
+        model = ScheduleAG
+        fields = ['date', 'hourIni', 'usuario']

@@ -23,10 +23,10 @@
             </tr>
              
             <tr>
-            {% for sche in schedules %}
-              <td>{{ sche.hourIni }}</td>
+            {% for h in schedules.inicio.all %}
+              <td>{{ h }}</td>
             {% endfor %}
-          </tr>
+            </tr>
             <!--
             <td>{{ sche.hourIni }}</td>
             <td>{{ sche.hourFin }}</td>

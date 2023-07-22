@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import Usuario, Schedule, HourIni
-from .forms import ScheduleForm
+from .models import Schedule, Usuario, ScheduleAG, HourIni
+from .forms import ScheduleAGForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
@@ -10,7 +10,8 @@ from usuarios.models import Usuario
 # Create your views here.
 def listSchedules(request):
     # Lógica de la vista
-    listado = Schedule.objects.all()
+    listado = ScheduleAG.objects.all()
+    
     return render(request, 'listSchedules.html',  {'schedules': listado})
 
 
@@ -18,13 +19,13 @@ def listSchedules(request):
 def nuevoSchedule(request):
     # Lógica de la vista
     if request.method == 'POST':
-        form = ScheduleForm(request.POST)
-        
+        form = ScheduleAGForm(request.POST)
+         
         if form.is_valid():
             pk = request.POST.get('id')
 
             if pk:  # Si se proporciona una clave primaria, es una actualización
-                objeto = get_object_or_404(Schedule, id=pk)
+                objeto = get_object_or_404(ScheduleAG, id=pk)
                 objeto.date = form.data.date
                 
                 objeto.save()
@@ -40,23 +41,25 @@ def nuevoSchedule(request):
     else:
         listado = Usuario.objects.all()
         listHoras = HourIni.objects.all()
-        return render(request, 'nuevoSchedule.html', {'empleados': listado, 'listHoras': listHoras})
+        listDate = Schedule.objects.all()
+        return render(request, 'nuevoSchedule.html', {'empleados': listado, 'listHoras': listHoras, 'listDate': listDate})
     
     listado = Usuario.objects.all()
     listHoras = HourIni.objects.all()
-    return render(request, 'nuevoSchedule.html', {'empleados': listado, 'listHoras': listHoras})
+    listDate = Schedule.objects.all()
+    return render(request, 'nuevoSchedule.html', {'empleados': listado, 'listHoras': listHoras, 'listDate': listDate})
 
 def editarSchedule(request, id):
-    sche = get_object_or_404(Schedule, id=id)
+    sche = get_object_or_404(ScheduleAG, id=id)
     listado = Usuario.objects.all()
 
     if request.method == 'POST':
-        form = ScheduleForm(request.POST, instance=sche)
+        form = ScheduleAGForm(request.POST, instance=sche)
         if form.is_valid():
             form.save()
             return redirect('listSchedules')
     else:
-        form = ScheduleForm(instance=sche)
+        form = ScheduleAGForm(instance=sche)
     
     return render(request, 'nuevoSchedule.html', {'form': form, 'Schedule': sche, 'empleados': listado})
 
@@ -64,6 +67,6 @@ def editarSchedule(request, id):
 @login_required
 def eliminarSchedule(request, id):
     
-    sche = get_object_or_404(Schedule, id=id)
+    sche = get_object_or_404(ScheduleAG, id=id)
     sche.delete()
     return redirect('listSchedules')

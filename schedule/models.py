@@ -4,13 +4,15 @@ from usuarios.models import Usuario
 # Create your models here.
 class Schedule(models.Model):
     id = models.AutoField(primary_key=True)
-    date = models.DateField()
-    inicio = models.ManyToManyField('HourIni') 
-    usuario1 = models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True, blank=True, related_name='schedules_usuario1', default = 99)
-
-    def __str__(self):
-        return f"Calendario para el día {self.dia} a las {self.hora}"
+    date = models.CharField(max_length=10)    
     
 class HourIni(models.Model):
     id = models.AutoField(primary_key=True)
     hourIni = models.TimeField()
+
+class ScheduleAG(models.Model):
+    id = models.AutoField(primary_key=True)
+    date = models.ForeignKey(Schedule, on_delete=models.CASCADE)
+    hourIni = models.ForeignKey(HourIni, on_delete=models.CASCADE) 
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, default=99)
+
