@@ -12,8 +12,7 @@
     <div class="col-md-6 offset-lg-3 text-center form-floating mt-2 ">
              
         <form method="POST" enctype="multipart/form-data">    
-            {% csrf_token %}
-            
+            {% csrf_token %}           
             
             <div class="form-floating mt-2">
               <input type="date" class="form-control" id="floatingInput" name="date" placeholder="Fecha" value="{%if sche %} {{sche.dia}} {%endif%}">
@@ -23,7 +22,8 @@
             {% for h in listHoras %}   
             
               <div class="col-md-3">
-              <label for="{{h.hourIni}}">{{h.hourIni}} <input type="checkbox" class="checkbox" id="{{h.hourIni}}" name="{{h.hourIni}}" value="{{h.hourIni}}">
+              <label for="inicio">{{h.hourIni}} 
+                <input type="checkbox" class="checkbox" id="{{h.hourIni}}" name="inicio" value="{{h.id}}">
               </div>
                 
               </label>   

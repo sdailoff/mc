@@ -33,17 +33,17 @@ def nuevoSchedule(request):
                 form.save() # Guarda los datos en la base de datos
             return redirect('listSchedules')  # Redirecciona a una página de éxito o a donde desees
         else:
+            print(form.data)
             print(form.errors)
-            form.errors='No pudo guardar'
+            #form.errors='No pudo guardar'
 
     else:
         listado = Usuario.objects.all()
         listHoras = HourIni.objects.all()
         return render(request, 'nuevoSchedule.html', {'empleados': listado, 'listHoras': listHoras})
     
-    listHoras = HourIni.objects.all().order_by('hourIni')
     listado = Usuario.objects.all()
-     
+    listHoras = HourIni.objects.all()
     return render(request, 'nuevoSchedule.html', {'empleados': listado, 'listHoras': listHoras})
 
 def editarSchedule(request, id):
