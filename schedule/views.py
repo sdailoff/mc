@@ -10,8 +10,8 @@ from usuarios.models import Usuario
 # Create your views here.
 def listSchedules(request):
     # Lógica de la vista
-    listado = ScheduleAG.objects.all()
-    
+    listado = ScheduleAG.objects.all() 
+ 
     return render(request, 'listSchedules.html',  {'schedules': listado})
 
 
@@ -40,12 +40,12 @@ def nuevoSchedule(request):
 
     else:
         listado = Usuario.objects.all()
-        listHoras = HourIni.objects.all()
+        listHoras = HourIni.objects.all().order_by('hourIni')
         listDate = Schedule.objects.all()
         return render(request, 'nuevoSchedule.html', {'empleados': listado, 'listHoras': listHoras, 'listDate': listDate})
     
     listado = Usuario.objects.all()
-    listHoras = HourIni.objects.all()
+    listHoras = HourIni.objects.all().order_by('hourIni')
     listDate = Schedule.objects.all()
     return render(request, 'nuevoSchedule.html', {'empleados': listado, 'listHoras': listHoras, 'listDate': listDate})
 

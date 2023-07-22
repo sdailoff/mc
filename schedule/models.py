@@ -8,7 +8,8 @@ class Schedule(models.Model):
     
 class HourIni(models.Model):
     id = models.AutoField(primary_key=True)
-    hourIni = models.TimeField()
+    hourIni = models.TimeField() 
+ 
 
 class ScheduleAG(models.Model):
     id = models.AutoField(primary_key=True)
