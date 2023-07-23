@@ -4,14 +4,35 @@ from .models import Date, Usuario, ScheduleAG, HourIni
 from .forms import ScheduleAGForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-
+from itertools import groupby
 
 from usuarios.models import Usuario
 # Create your views here.
 def listSchedules(request):
     # Lógica de la vista
-    listado = ScheduleAG.objects.all() 
-    #print (listado.hourIni.all)
+    listado = ScheduleAG.objects.all().order_by("date", "hourIni")
+        
+
+    data = ScheduleAG.objects.all()
+
+    x = [list(result) for key, result  in groupby(data, key=lambda item: item.date)]    
+    #print(x)
+    for xyz in x:
+        print (xyz[0])
+#    grouped = dict()
+#    for obj in ScheduleAG.objects.all():
+#        grouped.setdefault(obj.date, []).append(obj)
+        #print(obj.usuario)
+
+
+#    print (grouped)
+
+#    for sc in grouped:        
+#        print (grouped[sc])
+
+#    for x,y in grouped.items():
+#        print(x,y)
+
     return render(request, 'listSchedules.html',  {'schedules': listado})
 
 

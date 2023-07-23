@@ -15,20 +15,25 @@
         <th colspan="2">Acciones</th>
       </tr>
          
-            <tr>
-            <!--<td>{{ sche.id }}</td>-->
+            <tr>              
+                {% for sche in schedules %}
+                <th>{{ sche.date.date }} </th>
+                {% endfor %} 
+            </tr>
+            <tr>  
             {% for sche in schedules %}
-              <td>{{ sche.date.date }}</td>
                
               {% for h in sche.hourIni.all %}
-              <tr>{{ h.hourIni }}: {{ sche.usuario.nombre }} {{ sche.usuario.apellido }} </tr>            
+              <tr>
+                <td>
+                  {{ h.hourIni }}: {{ sche.usuario.nombre }} {{ sche.usuario.apellido }}
+                </td> 
+              </tr>            
               {% endfor %}
-            {% endfor %}
-            </tr>
-             
-            <tr>
+           
+            {% endfor %} 
+          </tr>
             
-            </tr>
             <!--
             <td>{{ sche.hourIni }}</td>
             <td>{{ sche.hourFin }}</td>
