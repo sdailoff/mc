@@ -19,13 +19,15 @@
             <!--<td>{{ sche.id }}</td>-->
             {% for sche in schedules %}
               <td>{{ sche.date.date }}</td>
+               
+              {% for h in sche.hourIni.all %}
+              <tr>{{ h.hourIni }}: {{ sche.usuario.nombre }} {{ sche.usuario.apellido }} </tr>            
+              {% endfor %}
             {% endfor %}
             </tr>
              
             <tr>
-            {% for h in schedules %}
-              <td>{{ h.hourIni.hourIni }}: {{ h.usuario.nombre }} {{ h.usuario.apellido }} </td>
-            {% endfor %}
+            
             </tr>
             <!--
             <td>{{ sche.hourIni }}</td>

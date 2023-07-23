@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import Schedule, Usuario, ScheduleAG, HourIni
+from .models import Date, Usuario, ScheduleAG, HourIni
 from .forms import ScheduleAGForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -11,7 +11,7 @@ from usuarios.models import Usuario
 def listSchedules(request):
     # Lógica de la vista
     listado = ScheduleAG.objects.all() 
- 
+    #print (listado.hourIni.all)
     return render(request, 'listSchedules.html',  {'schedules': listado})
 
 
@@ -22,6 +22,8 @@ def nuevoSchedule(request):
         form = ScheduleAGForm(request.POST)
          
         if form.is_valid():
+            
+            
             pk = request.POST.get('id')
 
             if pk:  # Si se proporciona una clave primaria, es una actualización
@@ -41,12 +43,12 @@ def nuevoSchedule(request):
     else:
         listado = Usuario.objects.all()
         listHoras = HourIni.objects.all().order_by('hourIni')
-        listDate = Schedule.objects.all()
+        listDate = Date.objects.all()
         return render(request, 'nuevoSchedule.html', {'empleados': listado, 'listHoras': listHoras, 'listDate': listDate})
     
     listado = Usuario.objects.all()
     listHoras = HourIni.objects.all().order_by('hourIni')
-    listDate = Schedule.objects.all()
+    listDate = Date.objects.all()
     return render(request, 'nuevoSchedule.html', {'empleados': listado, 'listHoras': listHoras, 'listDate': listDate})
 
 def editarSchedule(request, id):
